@@ -87,7 +87,19 @@
     </section>
   </main>
 
+
+  <!-- Load TrackJS -->
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
+    window.TrackJS && TrackJS.install({
+      token: "32e622e92b1f49b29f2604f26304edd4"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
+
+  <script>
+    TrackJS.track('Testing TrackJS')
     let form = document.querySelector('form');
 
       class formEvaluationError extends Error {
