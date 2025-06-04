@@ -89,6 +89,8 @@
 
   <script>
     let form = document.querySelector('form');
+    /*
+     * Modify function to error
     form.addEventListener('submit', e => {
       e.preventDefault();
       let output = document.querySelector('output');
@@ -97,11 +99,69 @@
       let operator = document.querySelector('#operator').value;
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
     });
+    */
+
+    /* STEP 3 - Trying Try/Catch */
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const output = document.querySelector('output');
+      const firstNum = document.querySelector('#first-num').value;
+      const secondNum = document.querySelector('#second-num').value;
+      const operator = document.querySelector('#operator').value;
+
+      try {
+        if (!firstNum || !secondNum) {
+          throw new Error("Please enter first and second numbers.");
+        }
+        if (isNaN(firstNum) || isNaN(secondNum)) {
+          throw new TypeError("Please enter valid inputs.");
+        }
+
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      }
+
+      catch (err) {
+        console.error(`${err.name}: ${err.message}`);
+        output.innerHTML = `Error: ${err.message}`;
+      }
+
+      finally {
+        console.log("Tried calculation");
+      }
+    });
+    /* STEP 3 - Trying Try/Catch */
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    /* STEP 2 - Adding Buttons for Console Testing */
+    const data = [
+      { name: 'Jonathan', team: '20' },
+      { name: 'Elena', team: '20' }
+    ];
+    
+    let count = 0;
+    
+    errorBtns[0].addEventListener('click', () => console.log("This is a console.log message."));
+    errorBtns[1].addEventListener('click', () => console.error("This is a console.error message."));
+    errorBtns[2].addEventListener('click', () => console.count("Count label"));
+    errorBtns[3].addEventListener('click', () => console.warn("This is a console.warn message."));
+    errorBtns[4].addEventListener('click', () => console.assert(false, "This is a console.assert failure."));
+    errorBtns[5].addEventListener('click', () => console.clear());
+    errorBtns[6].addEventListener('click', () => console.dir(document.body));
+    errorBtns[7].addEventListener('click', () => console.dirxml(document));
+    errorBtns[8].addEventListener('click', () => {
+      console.group("Group Start");
+      console.log("Power Project");
+    });
+    errorBtns[9].addEventListener('click', () => console.groupEnd());
+    errorBtns[10].addEventListener('click', () => console.table(data));
+    errorBtns[11].addEventListener('click', () => console.time("Timer"));
+    errorBtns[12].addEventListener('click', () => console.timeEnd("Timer"));
+    errorBtns[13].addEventListener('click', () => console.trace("Trace button pressed"));
+    /* STEP 2 - Adding Buttons for Console Testing */
   </script>
 </body>
 
