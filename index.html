@@ -89,6 +89,13 @@
 
   <script>
     let form = document.querySelector('form');
+
+      class formEvaluationError extends Error {
+        constructor(message) {
+          super(message);
+          this.name = "formEvaluationError";
+        }
+      }
     /*
      * Modify function to error
     form.addEventListener('submit', e => {
@@ -123,6 +130,12 @@
       catch (err) {
         console.error(`${err.name}: ${err.message}`);
         output.innerHTML = `Error: ${err.message}`;
+
+        try {
+          throw new formEvaluationError(`Could not evaluate ${firstNum} ${operator} ${secondNum}`);
+        } catch (err) {
+          console.log("Caught a formEvaluationError. " + err.message);
+        }
       }
 
       finally {
