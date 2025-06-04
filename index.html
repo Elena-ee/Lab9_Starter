@@ -186,6 +186,13 @@
     errorBtns[11].addEventListener('click', () => console.time("Timer"));
     errorBtns[12].addEventListener('click', () => console.timeEnd("Timer"));
     errorBtns[13].addEventListener('click', () => console.trace("Trace button pressed"));
+    errorBtns[14].addEventListener('click', () => {
+      throw new Error("This is a triggered global error!");
+    });
+
+    window.onerror = function(message, source, lineno, colno, error) {
+      console.log(`Global Error Caught: ${message} at ${source}:${lineno}:${colno}`);
+    };
     /* STEP 2 - Adding Buttons for Console Testing */
   </script>
 </body>
